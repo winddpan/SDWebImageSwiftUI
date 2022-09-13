@@ -56,6 +56,12 @@ public final class ImageManager : ObservableObject {
     
     /// Start to load the url operation
     public func load() {
+        DispatchQueue.main.async {
+            self._load()
+        }
+    }
+    
+    private func _load() {
         isFirstLoad = false
         if currentOperation != nil {
             return
