@@ -57,7 +57,11 @@ public struct WebImage : View {
     public var body: some View {
         // This solve the case when WebImage created with new URL, but `onAppear` not been called, for example, some transaction indeterminate state, SwiftUI :)
         if imageManager.isFirstLoad {
-            imageManager.load()
+            DispatchQueue.main.async {
+                if imageManager.isFirstLoad {
+                    imageManager.load()
+                }
+            }
         }
         return Group {
             if let image = imageManager.image {

@@ -75,10 +75,10 @@ extension View {
     ///   - disappear: The action when view disappears
     /// - Returns: Some view
     func onPlatformAppear(appear: @escaping () -> Void = {}, disappear: @escaping () -> Void = {}) -> some View {
-        #if os(iOS) || os(tvOS) || os(macOS)
-        return self.background(PlatformAppear(appearAction: appear, disappearAction: disappear))
-        #else
+//        #if os(iOS) || os(tvOS) || os(macOS)
+//        return self.background(PlatformAppear(appearAction: appear, disappearAction: disappear))
+//        #else
         return self.onAppear(perform: appear).onDisappear(perform: disappear)
-        #endif
+//        #endif
     }
 }
