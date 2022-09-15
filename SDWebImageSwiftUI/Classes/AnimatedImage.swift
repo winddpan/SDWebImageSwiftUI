@@ -286,6 +286,12 @@ public struct AnimatedImage : PlatformViewRepresentable {
     }
     
     func updateView(_ view: AnimatedImageViewWrapper, context: Context) {
+        DispatchQueue.main.async {
+            _updateView(view, context: context)
+        }
+    }
+    
+    func _updateView(_ view: AnimatedImageViewWrapper, context: Context) {
         // Refresh image, imageModel is the Source of Truth, switch the type
         // Although we have Source of Truth, we can check the previous value, to avoid re-generate SDAnimatedImage, which is performance-cost.
         if let name = imageModel.name, name != imageLoading.imageName {
